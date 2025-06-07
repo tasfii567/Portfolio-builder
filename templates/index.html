@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Editor</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(90deg, #5e2eff, #d642d6, #ff9642, #42d650);
+      background-size: 400% 400%;
+      animation: gradientBG 10s infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    header nav {
+      display: flex;
+      align-items: center;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1rem;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    header .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    header .search-bar input {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    header .search-bar button {
+      padding: 0.5rem 1rem;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    header .search-bar button:hover {
+      background-color: black;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-toggle {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 1rem;
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 10;
+  }
+
+  .dropdown-menu a {
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+    .container {
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .container h1 {
+      font-size: 7rem;
+      margin-bottom: 1rem;
+    }
+
+    .container p {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .button {
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .button.download {
+      background-color: black;
+      color: white;
+    }
+
+    .button.download:hover {
+      background-color: white;
+      color: black;
+      transform: scale(1.1);
+    }
+
+    .button.demo {
+      background-color: white;
+      color: black;
+    }
+
+    .button.demo:hover {
+      background-color: black;
+      color: white;
+      transform: scale(1.1);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 2rem;
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+
+    .social-links {
+    margin-top: 20px;
+    }
+
+    .social-links a {
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    margin: 0 12px; /* Adjusted spacing */
+    transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+    color: #fc5c7d;
+    }
+
+    .social-icon.facebook:hover {
+    color: #3b5998;
+    }
+
+    .social-icon.instagram:hover {
+    color: #e4405f;
+    }
+
+    .social-icon.twitter:hover {
+    color: #1da1f2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Portfolio Builder</div>
+    <nav>
+      <a href="/index">Home</a>
+      <a href="/features">Features</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Templates</a>
+        <div class="dropdown-menu">
+          <a href="/portfolioweb">Template 1</a>
+          <a href="/modern">Template 2</a>
+          <a href="/professional">Template 3</a>
+          <a href="/creative">Template 4</a>
+        </div>
+      </div>
+      <a href="#docs">Contact Us</a>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <h1>The Portfolio Website</h1>
+    <p>Build your portfolio in minutes!</p>
+    <div class="buttons">
+      <a href="/register" class="button download">Login/Register</a>
+      <a href="../static/video.mp4" class="button demo">Watch Demo</a>
+    </div>
+  </div>
+ 
+  <footer>
+    
+    <footer class="footer" id="contact">
+          <p>&copy; 2024 Portfolio Builder <br><span>Design Your Future.</span></p>
+          <div class="social-links">
+              <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">Facebook</a>
+              <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">Instagram</a>
+              <a href="https://www.twitter.com" target="_blank" class="social-icon twitter">Twitter</a>
+          </div>
+  </footer>
+  </footer>
+  
+  <script>
+    function performSearch() {
+      const query = document.getElementById("searchInput").value.trim();
+      if (query) {
+        alert(`Searching for: ${query}`);
+        // In a real application, you could redirect or query a backend service
+        // Example: window.location.href = `/search?query=${encodeURIComponent(query)}`;
+      } else {
+        alert("Please enter a search term.");
+      }
+    }
+    
+  </script>
+</body>
+</html>

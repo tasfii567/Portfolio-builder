@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features - Online Portfolio Builder</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      background: linear-gradient(90deg, #5e2eff, #d642d6, #ff9642, #42d650);
+      background-size: 400% 400%;
+      animation: gradientBG 10s infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1rem;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    .features-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .features-section h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .features-section p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    /* .features-section p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    } */
+
+    .feature-item:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-description {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 2rem;
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+
+    .social-links {
+    margin-top: 20px;
+    }
+
+    .social-links a {
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    margin: 0 12px; /* Adjusted spacing */
+    transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+    color: #fc5c7d;
+    }
+
+    .social-icon.facebook:hover {
+    color: #3b5998;
+    }
+
+    .social-icon.instagram:hover {
+    color: #e4405f;
+    }
+
+    .social-icon.twitter:hover {
+    color: #1da1f2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Portfolio Builder</div>
+    <nav>
+      <a href="/index">Home</a>
+      <a href="/features">Features</a>
+      <a href="#templates">Templates</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </header>
+
+  <div class="features-section">
+    <h2>Features</h2>
+    <p>Discover the tools and features that make building your online portfolio a seamless experience.</p>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">Customizable Templates</div>
+        <p class="feature-description">Choose from a variety of modern, professionally designed templates to match your style.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-title">Integrated Social Media</div>
+        <p class="feature-description">Connect your portfolio with your LinkedIn, GitHub, and other social media platforms effortlessly.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">📁</div>
+        <div class="feature-title">Showcase Your Work</div>
+        <p class="feature-description">Easily upload and organize your projects, artwork, or writing samples in a beautiful gallery format.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Interactive Insight</div>
+        <p class="feature-description">Gain deep insights into your portfolio's performance with detailed analytics, including visitor demographics, most viewed sections, and engagement trends.
+        </p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Mobile-Friendly Design</div>
+        <p class="feature-description">Ensure your portfolio looks great on any device with responsive, mobile-friendly designs.</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Fast and Secure</div>
+        <p class="feature-description">Enjoy a seamless experience with fast loading times and secure hosting.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    
+    <footer class="footer" id="contact">
+          <p>&copy; 2024 Portfolio Builder <br><span>Design Your Future.</span></p>
+          <div class="social-links">
+              <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">Facebook</a>
+              <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">Instagram</a>
+              <a href="https://www.twitter.com" target="_blank" class="social-icon twitter">Twitter</a>
+          </div>
+  </footer>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+    .container {
+      max-width: 800px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-label {
+      font-weight: bold;
+      color: #495057;
+    }
+    textarea,
+    input[type="text"],
+    input[type="email"] {
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      height: 30px; 
+      font-size: 14px; 
+    }
+    textarea {
+      height: 60px; 
+    }
+    .btn {
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    #add-project-btn {
+      background-color: #6c757d;
+      color: #ffffff;
+    }
+    #add-project-btn:hover {
+      background-color: #5a6268;
+    }
+    .project-entry {
+      background: #e9ecef;
+      padding: 10px; /* Smaller padding */
+      border-radius: 5px;
+    }
+    .project-entry .form-control {
+      margin-bottom: 5px; /* Reduced margin */
+    }
+    .remove-project-btn {
+      background-color: #dc3545;
+      color: #ffffff;
+    }
+    .remove-project-btn:hover {
+      background-color: #c82333;
+    }
+    #save-btn {
+      background-color: #007bff;
+      color: #ffffff;
+    }
+    #save-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Edit Portfolio</h1>
+    <form id="portfolio-form">
+      <div class="mb-3">
+        <label for="about" class="form-label">About Me</label>
+        <textarea id="about" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div id="projects-section">
+        <label class="form-label">Projects</label>
+        <div id="projects-list">
+          <!-- Project entries will appear here -->
+        </div>
+        <button type="button" class="btn my-3" id="add-project-btn">Add Project</button>
+      </div>
+
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact</label>
+        <input type="email" id="contact" class="form-control">
+      </div>
+      <button type="submit" id="save-btn" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+
+  <script>
+    const projectsList = document.getElementById('projects-list');
+    const addProjectBtn = document.getElementById('add-project-btn');
+
+    function addProjectEntry(title = '', description = '') {
+      const projectDiv = document.createElement('div');
+      projectDiv.className = 'project-entry mb-3';
+
+      projectDiv.innerHTML = `
+        <div class="mb-2">
+          <input type="text" class="form-control" placeholder="Project Title" value="${title}">
+        </div>
+        <div class="mb-2">
+          <textarea class="form-control" rows="2" placeholder="Project Description">${description}</textarea>
+        </div>
+        <button type="button" class="btn btn-danger remove-project-btn">Remove</button>
+      `;
+
+      projectsList.appendChild(projectDiv);
+
+      projectDiv.querySelector('.remove-project-btn').addEventListener('click', () => {
+        projectsList.removeChild(projectDiv);
+      });
+    }
+
+    function loadForm() {
+      const portfolio = JSON.parse(localStorage.getItem('portfolio')) || {
+        about: '',
+        projects: [],
+        contact: '',
+      };
+
+      document.getElementById('about').value = portfolio.about;
+      document.getElementById('contact').value = portfolio.contact;
+
+      portfolio.projects.forEach(project => {
+        addProjectEntry(project.title, project.description);
+      });
+    }
+
+    addProjectBtn.addEventListener('click', () => {
+      addProjectEntry();
+    });
+
+    document.getElementById('portfolio-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const about = document.getElementById('about').value;
+      const contact = document.getElementById('contact').value;
+
+      const projects = Array.from(projectsList.querySelectorAll('.project-entry')).map(entry => {
+        const title = entry.querySelector('input').value;
+        const description = entry.querySelector('textarea').value;
+        return { title, description };
+      });
+
+      const portfolio = { about, projects, contact };
+      localStorage.setItem('portfolio', JSON.stringify(portfolio));
+
+      alert('Portfolio updated successfully!');
+      window.location.href = '/portfolioweb';
+    });
+
+    loadForm();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
